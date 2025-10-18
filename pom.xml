@@ -3,17 +3,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.tiger</groupId>
-    <artifactId>scaffold</artifactId>
+    <groupId>dev.tiger</groupId>
+    <artifactId>yoga</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>scaffold</name>
-    <description>scaffold</description>
+    <name>yoga</name>
+    <description>yogaV3</description>
     <modules>
-        <module>scaffold-dependencies</module>
-        <module>scaffold-main</module>
-        <module>scaffold-module</module>
+        <module>yoga-dependencies</module>
+        <module>yoga-main</module>
+        <module>yoga-module</module>
     </modules>
 
     <properties>

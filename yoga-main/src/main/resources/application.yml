@@ -1,0 +1,113 @@
+#============================#
+# server 配置
+#============================#
+server:
+  port: 82 # 启动端口
+  max-http-header-size: 10240 # 最大请求头字节大小
+  #servlet:
+    # context-path: /scaffold/v1 # 资源前缀
+
+#============================#
+# spring 配置
+#============================#
+spring:
+  application:
+    # 应用名
+    name: yoga
+  profiles:
+    active: @spring.active@
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss.SSS
+    locale: zh_CN
+    serialization:
+      # 格式化输出
+      indent_output: false
+  main:
+    allow-circular-references: true
+    #解决swagger版本路径不兼容问题
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  #============================#
+  # redis 配置
+  #============================#
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+  server:
+    port: 8080
+
+#============================#
+# mybatisplus 配置
+#============================#
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    lazy-loading-enabled: true
+    multiple-result-sets-enabled: true
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+  global-config:
+    banner: false
+    db-config:
+      id-type: assign_id
+      table-underline: true
+    enable-sql-runner: true
+    #数据库类型
+    db-type: MYSQL
+  configuration-properties:
+    prefix:
+    #如果数据库为postgresql，则需要配置为blobType: BINARY
+    blobType: BLOB
+    #如果数据库为oracle或mssql，则需要配置为boolValue: 1
+    boolValue: true
+
+#============================#
+# logging 日志配置
+#============================#
+logging:
+  level:
+    root: info
+  file:
+    # 日志文件路径 推荐绝对路径
+    path: /Users/guolin/develop/yoga/Yoga-V3/logs/${spring.application.name}/
+    name: ${spring.application.name}
+  logback:
+    rollingpolicy:
+      max-history: 7
+      max-file-size: 10MB
+
+#============================#
+# file 配置
+#============================#
+file:
+  # 静态附件前缀
+  static-prefix: attach
+  # 上传的文件对外暴露的访问路径
+  access-path-pattern: /${file.static-prefix}/**
+  # 文件上传目录
+  upload-folder: /Users/guolin/develop/yoga/Yoga-V3/resources/upload/
+  # 文件上传最大
+  max-post-size: 10
+
+#============================#
+# jwt 配置
+#============================#
+jwt:
+  # 签名密钥
+  secret: 4bcf580dd5aec762172ebb9954eeaa06e146f0184752a8859b78e3d28aee3da8
+  # Access Token 过期时间 30分钟
+  access-token-expire: 1800000
+  # Refresh Token 过期时间 7天
+  refresh-token-expire: 604800000
+  # token 前缀 Bearer：持票人
+  token-prefix: Bearer
+
